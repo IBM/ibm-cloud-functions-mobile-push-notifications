@@ -1,0 +1,33 @@
+---
+packages:
+  push-notification-sample:
+    actions:
+      build-message:
+        function: actions/build-message.js
+        runtime: nodejs:10
+      create-tag:
+        function: actions/create-tag.js
+        runtime: nodejs:10
+      create-trigger:
+        function: actions/create-trigger.js
+        runtime: nodejs:10
+      get-three-day-weather:
+        function: actions/get-three-day-weather.js
+        runtime: nodejs:10
+        inputs:
+          username: $WEATHER_USERNAME
+          password: $WEATHER_PASSWORD
+    sequences:
+      create-tag-and-trigger:
+        actions: create-tag, create-trigger
+        web: true
+      get-weather-and-send-notification:
+        actions: get-three-day-weather, build-message, push-notifications/send-message
+    apis:
+      serverless-mobile-backend:
+        backend:
+          trigger-sequence:
+            create-tag-and-trigger:
+              method: POST
+              response: json
+

@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Weather Notification</string>
+    <string name="rain">Rain</string>
+    <string name="cloudy">Cloudy</string>
+    <string name="snow">Snow</string>
+    <string name="allTypes">All types of weather</string>
+
+    <string name="subscribeButton">Subscribe</string>
+    <string name="selectNewCityButton">Select new city</string>
+</resources>

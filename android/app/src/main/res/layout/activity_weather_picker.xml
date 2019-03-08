@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".WeatherPickerActivity">
+
+    <LinearLayout
+        android:id="@+id/weatherSelectors"
+        android:paddingBottom="100dp"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingEnd="15dp"
+            android:paddingStart="15dp"
+            android:orientation="horizontal"
+            android:baselineAligned="false">
+
+            <LinearLayout
+                android:id="@+id/rainContainer"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:layout_marginStart="3dp"
+                android:layout_marginEnd="3dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:src="@drawable/rain"
+                    android:scaleType="fitCenter"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp" />
+
+                <TextView
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/rainText"
+                    android:textAlignment="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:text="@string/rain" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/cloudyContainer"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:layout_marginStart="3dp"
+                android:layout_marginEnd="3dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:src="@drawable/cloudy"
+                    android:scaleType="fitCenter"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"  />
+
+                <TextView
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/cloudyText"
+                    android:textAlignment="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:text="@string/cloudy" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/snowContainer"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:layout_marginStart="3dp"
+                android:layout_marginEnd="3dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:src="@drawable/snow"
+                    android:scaleType="fitCenter"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"  />
+
+                <TextView
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/snowText"
+                    android:textAlignment="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:text="@string/snow" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <Switch
+            android:id="@+id/allTypesSwitch"
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="35dp"
+            android:layout_marginEnd="50dp"
+            android:layout_marginStart="50dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/allTypes" />
+
+        <TextView
+            android:id="@+id/timeLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textAlignment="center"
+            android:padding="15dp"
+            tools:text="7:00 PM" />
+
+        <SeekBar
+            android:id="@+id/chooseTime"
+            style="@style/Widget.AppCompat.SeekBar.Discrete"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:layout_marginEnd="50dp"
+            android:max="5"
+            android:progress="2" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/subscribeButton"
+        android:paddingStart="50dp"
+        android:paddingEnd="50dp"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:textSize="18sp"
+        android:textAllCaps="false"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/colorPrimary"
+        android:textColor="@android:color/white"
+        android:text="Subscribe" />
+
+    <Button
+        android:id="@+id/selectNewCityButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:text="Select New City"
+        android:textColor="@android:color/holo_blue_dark"
+        style="?android:attr/buttonBarButtonStyle" />
+
+</LinearLayout>
