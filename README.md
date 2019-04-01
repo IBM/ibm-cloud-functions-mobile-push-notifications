@@ -1,4 +1,4 @@
-# Use Serverless Functions to send Push Notifications
+# Create Serverless Functions to send Push Notifications
 
 The application demonstrates IBM Cloud Functions (based on Apache OpenWhisk) that is used as a serverless mobile backend and as a way to send Push Notifications to users. The use case demonstrates how actions work with the mobile app and also execute actions to send notifications at a specific time using Cron job configuration.
 
