@@ -7,4 +7,8 @@
 
     <string name="subscribeButton">Subscribe</string>
     <string name="selectNewCityButton">Select new city</string>
+
+    <string name="PUSH_NOTIFICATION_APP_GUID">83a7d60c-6bc5-49bf-ac7a-2aa44c664323</string>
+    <string name="PUSH_NOTIFICATION_CLIENT_SECRET">2dfde75b-3b48-41d4-a843-5fb66facb0bf</string>
+    <string name="SERVERLESS_API_URL">https://service.us.apiconnect.ibmcloud.com/gws/apigateway/api/41673fcc768037210b6da5d92c94d18ab697b509c6227a9f7847728ec16a9b36/backend/trigger-sequence</string>
 </resources>
