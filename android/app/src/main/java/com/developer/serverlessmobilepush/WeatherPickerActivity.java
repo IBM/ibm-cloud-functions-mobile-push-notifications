@@ -46,6 +46,7 @@ public class WeatherPickerActivity extends AppCompatActivity {
     MFPPushNotificationListener notificationListener;
     List<String> subscribedTags;
     int intTimeChosen;
+    AlertDialog successAlertDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,13 +62,17 @@ public class WeatherPickerActivity extends AppCompatActivity {
         Log.d("Latitude is", String.valueOf(latitude));
         Log.d("Longitude is", String.valueOf(longitude));
 
+        String appGuid = getResources().getString(R.string.PUSH_NOTIFICATION_APP_GUID);
+        String clientSecret = getResources().getString(R.string.PUSH_NOTIFICATION_CLIENT_SECRET);
+        String serverlessApiBackendUrl = getResources().getString(R.string.SERVERLESS_API_URL);
+
         // Initialize the SDK
         BMSClient.getInstance().initialize(this, BMSClient.REGION_US_SOUTH);
         //Initialize client Push SDK
         push = MFPPush.getInstance();
-        push.initialize(getApplicationContext(), "<APP_GUID>", "<CLIENT_SECRET>");
+        push.initialize(getApplicationContext(), appGuid, clientSecret);
         // Initialize Serverless Helper
-        ServerlessHelper.initialize("https://service.us.apiconnect.ibmcloud.com/gws/apigateway/api/<>/backend/trigger-sequence", getApplicationContext());
+        ServerlessHelper.initialize(serverlessApiBackendUrl, getApplicationContext());
 
         // register push notification
         push.registerDevice(new MFPPushResponseListener<String>() {
@@ -195,6 +200,15 @@ public class WeatherPickerActivity extends AppCompatActivity {
 
         // set initial to all types
         allTypesSwitch.setChecked(true);
+
+        // set alert dialog
+        successAlertDialog = new AlertDialog.Builder(WeatherPickerActivity.this)
+            .setTitle("Push Notification Tag")
+            .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int whichButton) {
+
+                }
+            }).create();
 
         subscribeButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -351,12 +365,26 @@ public class WeatherPickerActivity extends AppCompatActivity {
         push.subscribe(tag, new MFPPushResponseListener<String>() {
             @Override
             public void onSuccess(String response) {
-                Log.d("Subscribed to", tag + " - " + response);
+                Log.d("Subscribed to", tag);
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        successAlertDialog.setMessage("Successfully subscribed to tag: " + tag);
+                        successAlertDialog.show();
+                    }
+                });
             }
 
             @Override
-            public void onFailure(MFPPushException exception) {
+            public void onFailure(final MFPPushException exception) {
                 Log.d("FAILED to subscribe", tag + " - " + exception.toString());
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        successAlertDialog.setMessage("Failed to subscribe to " + tag + ". " + exception.toString());
+                        successAlertDialog.show();
+                    }
+                });
             }
         });
     }

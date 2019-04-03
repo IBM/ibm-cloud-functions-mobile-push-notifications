@@ -110,14 +110,13 @@ $ ibmcloud fn api list | grep serverless-mobile-backend
 /<>/push-notification-sa    post  serverless-mobile-backend  https://service.us.apiconnect.ibmcloud.com/gws/apigateway/api/<>/backend/trigger-sequence
 ```
 
-Modify Android's Java file `android/app/src/main/java/com/developer/serverlessmobilepush/WeatherPickerActivity.java`. Use your own Push Notification's `appGuid` and `clientSecret`. Use the URL from the REST API that you got from the previous step.
+Modify Android's xml file `android/app/src/main/res/values/strings.xml`. Use your own Push Notification's credentials: `appGuid` and `clientSecret`. Use the URL from the REST API that you got from the previous step.
 
-```java
-## LINE 68-70
+```xml
 ...
-push.initialize(getApplicationContext(), "<APP_GUID>", "<CLIENT_SECRET>");
-// Initialize Serverless Helper
-ServerlessHelper.initialize("https://service.us.apiconnect.ibmcloud.com/gws/apigateway/api/<>/backend/trigger-sequence", getApplicationContext());
+<string name="PUSH_NOTIFICATION_APP_GUID">123-45-6789</string>
+<string name="PUSH_NOTIFICATION_CLIENT_SECRET">123-45-6789</string>
+<string name="SERVERLESS_API_URL">https://service.us.apiconnect.ibmcloud.com/gws/apigateway/api/<>/backend/trigger-sequence</string>
 ...
 ```
 
@@ -125,7 +124,7 @@ ServerlessHelper.initialize("https://service.us.apiconnect.ibmcloud.com/gws/apig
 
 * You will need Android studio to run the application. You could test the Android app either in an [emulator](https://developer.android.com/studio/run/emulator) in Android Studio or on a [real device](https://developer.android.com/studio/run/device).
 
-* Once it is running, the app will ask you to enter a City name to which you want to subscribe weather alerts to. The alert will be the weather for tomorrow. You can choose which type of weather to subscribed to and at what time you want to receive push notifications.
+* Once it is running, the app will ask you to enter a City name to which you want to subscribe weather alerts to. The alert will be about the weather for tomorrow. You can choose which type of weather to subscribed to and at what time you want to receive push notifications.
 
 * You can also fire the trigger and receive the push notification now.
 
@@ -138,7 +137,7 @@ triggers
 ...
 ```
 
-* Triggers that are created from the app will look like `<city-name>-<type-of-weather>-<0-5>` (0 is "5PM" and 5 is "10PM"). Get the one you are subscribed to.
+* Triggers that are created from the app will look like `<city-name>-<type-of-weather>-<0-5>` (0 is "5PM" and 5 is "10PM"). Get the one you are subscribed to. You would also see an alert dialog containing the trigger name from the app when you click on subscribe within the app.
 
 ```
 $ ibmcloud fn trigger get san-francisco-any-5
