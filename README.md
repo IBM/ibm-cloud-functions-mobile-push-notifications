@@ -44,8 +44,8 @@ When the reader has completed this Code Pattern, they will understand how to:
 Clone the `ibm-cloud-functions-serverless-mobile-push` locally. In a terminal, run:
 
 ```
-$ git clone https://github.com/IBM/ibm-cloud-functions-serverless-mobile-push
-$ cd ibm-cloud-functions-serverless-mobile-push
+$ git clone https://github.com/IBM/ibm-cloud-functions-mobile-push-notifications
+$ cd ibm-cloud-functions-mobile-push-notifications
 ```
 
 ### 2. Create IBM Cloud Services
