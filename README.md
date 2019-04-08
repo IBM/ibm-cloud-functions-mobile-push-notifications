@@ -81,12 +81,16 @@ This approach deploy the Cloud Functions with one command driven by the runtime-
 
 Make sure you have the right environment variables in the `local.env` file. Export them in your terminal then deploy the Cloud Functions using `ibmcloud fn deploy`. This uses the `manifest.yaml` file in this repo's root directory.
 
+The [manifest.yaml](manifest.yaml) describes all the Actions, Packages, Triggers and Rules and deploys them with one command.
+
 ```
 $ source local.env
 $ ibmcloud fn deploy
 ```
 
 > You may want to undeploy them later with `ibmcloud fn undeploy`
+
+> Want to learn more about `wskdeploy`? Check out the [repository](https://github.com/apache/incubator-openwhisk-wskdeploy#Whisk-Deploy-wskdeploy)
 
 ## Deploy manually with the `ibmcloud fn` command line tool
 
@@ -190,7 +194,7 @@ $ ibmcloud fn trigger fire san-francisco-any-5 -P test.json
 
 ### Deploy manually with the `ibmcloud fn` command line tool
 
-This approach shows you how to deploy individual the packages, actions, triggers, and rules with CLI commands. It helps you understand and control the underlying deployment artifacts.
+This approach shows you how to deploy individual the packages, actions, triggers, and rules with CLI commands. It helps you understand and control the underlying deployment artifacts. These manual steps are equivalent to what was described and deployed in `wskdeploy` tool using the [manifest.yaml](manifest.yaml).
 
 * Export the credentials in your environment
 

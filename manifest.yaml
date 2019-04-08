@@ -1,3 +1,10 @@
+# This yaml file deploys:
+# A package named push-notification-sample.
+# Actions named build-message, create-tag, create-trigger, and get-three-day-weather
+# using the javscript files in actions folder.
+# Sequences create-tag-and-trigger and get-weather-and-send-notification.
+# An API to POST /backend/trigger-sequence for the create-tag-and-trigger sequence
+
 ---
 packages:
   push-notification-sample:
