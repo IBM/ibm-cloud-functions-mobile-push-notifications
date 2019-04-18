@@ -1,9 +1,11 @@
 # This yaml file deploys:
 # A package named push-notification-sample.
-# Actions named build-message, create-tag, create-trigger, and get-three-day-weather
+# Actions named build-message, create-tag,
+# create-trigger, and get-three-day-weather
 # using the javscript files in actions folder.
 # Sequences create-tag-and-trigger and get-weather-and-send-notification.
-# An API to POST /backend/trigger-sequence for the create-tag-and-trigger sequence
+# An API to POST /backend/trigger-sequence for the
+# create-tag-and-trigger sequence
 
 ---
 packages:
@@ -29,7 +31,8 @@ packages:
         actions: create-tag, create-trigger
         web: true
       get-weather-and-send-notification:
-        actions: get-three-day-weather, build-message, push-notifications/send-message
+        actions: get-three-day-weather, build-message,
+          push-notifications/send-message
     apis:
       serverless-mobile-backend:
         backend:
@@ -37,4 +40,3 @@ packages:
             create-tag-and-trigger:
               method: POST
               response: json
-
