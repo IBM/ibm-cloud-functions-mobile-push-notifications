@@ -14,10 +14,11 @@ function main(params) {
   let isAlertAll = params.isAlertAll
   var narrative = ""
 
-  forecasts = forecasts.filter(i => i.num == 2)
+  // filter for tomorrow's forecast only
+  forecasts = forecasts.filter((element, index) => index > 7)
 
   if (forecasts.length > 0) {
-      narrative = forecasts[0].narrative
+      narrative = "Weather for tomorrow is: " + forecasts[0].weather[0].description
   }
   var text
 
@@ -25,12 +26,14 @@ function main(params) {
       text = narrative
   } else if (weatherTypeSubscribedTo) {
       for (i in weatherTypeSubscribedTo) {
-          if (narrative.toLowerCase().includes(weatherTypeSubscribedTo[i].toLowerCase())) {
-              text = narrative
+        for (j in forecasts) {
+          if (forecasts[j].weather.description.toLowerCase().includes(weatherTypeSubscribedTo[i].toLowerCase())) {
+              text = "Weather for tomorrow is: " + forecasts[j].weather[0].description
               console.log(narrative.toLowerCase())
               console.log(weatherTypeSubscribedTo[i].toLowerCase())
               break
           }
+        }
       }
   }
 
