@@ -24,8 +24,7 @@ packages:
         function: actions/get-three-day-weather.js
         runtime: nodejs:10
         inputs:
-          username: $WEATHER_USERNAME
-          password: $WEATHER_PASSWORD
+          openweatherapikey: $OPEN_WEATHER_API_KEY
     sequences:
       create-tag-and-trigger:
         actions: create-tag, create-trigger

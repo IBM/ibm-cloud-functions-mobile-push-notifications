@@ -17,30 +17,23 @@ var request = require('request');
  */
 function main(params) {
     console.log('input params:', params);
-    var username = params.username;
-    var password = params.password;
+    var openweatherapikey = params.openweatherapikey;
     var lat = params.latitude || '0';
     var lon = params.longitude ||  '0';
-    var language = params.language || 'en-US';
-    var units = params.units || 'm';
-    var timePeriod = params.timePeriod || '10day';
-    var host = params.host || 'twcservice.mybluemix.net';
-    var url = 'https://' + host + '/api/weather/v1/geocode/' + lat + '/' + lon + '/forecast/daily/3day.json';
-    var qs = {language: language, units: units};
+    var url = 'https://api.openweathermap.org/data/2.5/forecast?lat=' + lat + '&lon=' + lon + '&cnt=16&appid=' + openweatherapikey
 
     console.log('url:', url);
 
     var promise = new Promise(function(resolve, reject) {
         request({
             url: url,
-            qs: qs,
-            auth: {username: username, password: password},
             timeout: 30000
         }, function (error, response, body) {
             if (!error && response.statusCode === 200) {
                 var j = JSON.parse(body);
                 var result = {}
-                result.weather = j
+                result.weather = {}
+                result.weather.forecasts = j.list
                 result.isAlertAll = params.isAlertAll
                 result.types = params.weather
                 result.pushNotificationTag = params.pushNotificationTag

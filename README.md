@@ -19,7 +19,7 @@ When the reader has completed this Code Pattern, they will understand how to:
 1. User subscribes to a city and chooses the types of weather to subscribe to and select the time to receive the notification.
 2. The mobile app invokes a cloud function sequence via REST API that creates a Push notifcation tag.
 3. The next action in the sequence is invoked. The action interacts with the Cloud Function framework to create a cron trigger with the necessary data like location and weather types.
-4. The trigger will be fired at the specific time set by the user. The trigger will invoke a sequence via a configured rule. The action invoked will get data from the Weather Company Data.
+4. The trigger will be fired at the specific time set by the user. The trigger will invoke a sequence via a configured rule. The action invoked will get data from the OpenWeather API.
 5. The next action in the sequence receives the data and will build the message according to what the user requested of what weather type.
 6. The next action in the sequence is interfaced with the Push Notification service that will finally push a notification to the user.
 
@@ -50,7 +50,7 @@ $ git clone https://github.com/IBM/ibm-cloud-functions-mobile-push-notifications
 $ cd ibm-cloud-functions-mobile-push-notifications
 ```
 
-### 2. Create IBM Cloud Services
+### 2. Create IBM Cloud Services and OpenWeather API key
 
 <!-- configure push notification -->
 Create and configure the Push Notification Service:
@@ -59,10 +59,12 @@ Create and configure the Push Notification Service:
 * [Android's Push Notification FCM](https://cloud.ibm.com/docs/services/mobilepush?topic=mobile-pushnotification-push_step_1#push_step_1_android)
 * [Configure your Push Notification service with your FCM credentials](https://cloud.ibm.com/docs/services/mobilepush?topic=mobile-pushnotification-push_step_2#push_step_2_Android)
 
-Create Weather Company Data Service:
+Create a free OpenWeather account to access API:
 
-*  [Weather Company Data](https://cloud.ibm.com/catalog/services/weather-company-data)
-* Copy the username and password of the Weather Company Data service and paste it in the `local.env` file.
+*  [OpenWeather](https://home.openweathermap.org/users/sign_up)
+* Copy your [API key](https://home.openweathermap.org/api_keys) of your OpenWeather account and paste it in the `local.env` file.
+
+![openweather api key](docs/openweather.png)
 
 ### 3. Deploy Cloud Functions
 
@@ -74,6 +76,8 @@ $ pushd package-push-notifications/runtimes/nodejs/
 $ ibmcloud fn deploy
 $ popd
 ```
+
+Then you can deploy the serverless functions that would get the weather alerts and push notifications to the mobile app.
 
 **Choose one of the two deployment methods:**
 
@@ -226,8 +230,7 @@ $ ibmcloud fn action create push-notification-sample/create-trigger actions/crea
 
 $ ibmcloud fn action create push-notification-sample/get-three-day-weather actions/get-three-day-weather.js \
 --kind nodejs:10 \
---param username $WEATHER_USERNAME \
---param password $WEATHER_PASSWORD
+--param openweatherapikey $OPEN_WEATHER_API_KEY
 ```
 
 * Create the sequences
